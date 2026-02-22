@@ -1,0 +1,16 @@
+{
+  "coleccionables": [
+    {
+      "nombre": "Moneda",
+      "rareza": "comun",
+      "valor": "poco"
+    }
+  ],
+  "misiones": [
+    {
+      "id": "1",
+      "titulo": "inico",
+      "descripcion": "El inico"
+    }
+  ]
+}
