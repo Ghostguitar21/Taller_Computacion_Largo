@@ -7,7 +7,7 @@ public class readJS : MonoBehaviour
     public TextAsset GameData;
     [System.Serializable]
 
-    public class coleccionables
+    public class coleccionable
     {
         public string nombre;
         public string rareza;
@@ -17,13 +17,13 @@ public class readJS : MonoBehaviour
 
 public class coleccionablesLista
     {
-        public coleccionables[] coleccion;
+        public coleccionable[] coleccionables;
     }
 
-    public coleccionables losColeccionables = new coleccionables();
+    public coleccionable losColeccionables = new coleccionable();
     void Start()
     {
-        losColeccionables = JsonUtility.FromJson<coleccionables>(GameData.text);
+        losColeccionables = JsonUtility.FromJson<coleccionable>(GameData.text);
     }
 
     
