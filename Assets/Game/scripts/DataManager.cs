@@ -14,13 +14,20 @@ public class DataManager : MonoBehaviour
     public coleccionablesLista datos;
     public TMP_InputField busquedaC;
     public TextAsset GameData;
+    public TextMeshProUGUI misionActualTexto;
+    public TextAsset MisionesData;
+
+    List<misiones> listaMisiones = new List<misiones>();
+    Stack<misiones> pilaMisiones = new Stack<misiones>();
     List<readJS.coleccionable> colecionables = new List<readJS.coleccionable>();
+    Stack<misiones> historialUndo = new Stack<misiones>();
 
     void Start()
     {
         cargarJS();
         BuscarC("Moneda");
         botonBC();
+        CargarMisiones();
     }
 
 
@@ -83,6 +90,61 @@ public class DataManager : MonoBehaviour
         string textoUsuario = busquedaC.text;
         BuscarC(textoUsuario);
    
+    }
+
+    public void CargarMisiones()
+    {
+        if (MisionesData == null) return;
+
+        readJS.misionesLista datosM =
+            JsonUtility.FromJson<readJS.misionesLista>(MisionesData.text);
+
+        listaMisiones.Clear();
+        pilaMisiones.Clear();
+
+        foreach (misiones m in datosM.misiones)
+        {
+            listaMisiones.Add(m);
+            pilaMisiones.Push(m); // las metemos a la pila
+        }
+
+        MostrarMisionActual();
+    }
+
+    public void MostrarMisionActual()
+    {
+        if (pilaMisiones.Count > 0)
+        {
+            misiones actual = pilaMisiones.Peek();
+            misionActualTexto.text =
+                "Misión Actual:\n" +
+                actual.Titulo + "\n\n" +
+                actual.Descripcion;
+        }
+        else
+        {
+            misionActualTexto.text = "No hay misiones activas.";
+        }
+    }
+
+    public void CompletarMision()
+    {
+        if (pilaMisiones.Count > 0)
+        {
+            misiones m = pilaMisiones.Pop();
+            historialUndo.Push(m);
+            MostrarMisionActual();
+        }
+    }
+
+    public void Deshacer()
+    {
+        if (historialUndo.Count > 0)
+        {
+            misiones m = historialUndo.Pop();
+            pilaMisiones.Push(m);
+            MostrarMisionActual();
+        }
     }
 }
 

@@ -31,4 +31,9 @@ public class coleccionablesLista
     {
         
     }
+    [System.Serializable]
+    public class misionesLista
+    {
+        public misiones[] misiones;
+    }
 }
