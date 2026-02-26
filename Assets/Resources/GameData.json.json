@@ -3,9 +3,8 @@
     {
       "nombre": "Moneda",
       "rareza": "comun",
-      "valor": "poco"
-    }
-
+      "valor": "100"
+    },
     {
       "nombre": "corazón de jade",
       "rareza": "poco comun",
@@ -14,15 +13,15 @@
   ],
   "misiones": [
     {
+      "id": "2",
+      "titulo": "pon a prueba tu suerte",
+      "descripcion": "pon aprueba tu suerte y escoge uno entre estos 4 botones y espera a ver si la suerte te sonrie"
+    },
+    {
       "id": "1",
       "titulo": "inico",
       "descripcion": "El inico"
     }
-
-    {
-   "id": "2",
-   "titulo": "pon a prueba tu suerte",
-   "descripcion": "pon aprueba tu suerte y escoge uno entre estos 4 botones y espera a ver si la suerte te sonrie"
-}
   ]
 }
+

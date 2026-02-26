@@ -96,8 +96,8 @@ public class DataManager : MonoBehaviour
     {
         if (MisionesData == null) return;
 
-        readJS.misionesLista datosM =
-            JsonUtility.FromJson<readJS.misionesLista>(MisionesData.text);
+        readJS.lasMisiones datosM =
+            JsonUtility.FromJson<readJS.lasMisiones>(GameData.text);
 
         listaMisiones.Clear();
         pilaMisiones.Clear();
