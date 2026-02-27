@@ -6,20 +6,30 @@
       "valor": "100"
     },
     {
-      "nombre": "corazón de jade",
-      "rareza": "poco comun",
+      "nombre": "Corazon de jade",
+      "rareza": "Poco comun",
       "valor": "1000"
+    },
+    {
+      "nombre": "Manto incorporeo",
+      "rareza": "epica",
+      "valor": "2000"
     }
   ],
   "misiones": [
     {
+      "id": "3",
+      "titulo": "El velo del silencio",
+      "descripcion": "En el santuario, los Centinelas Eternos custodian el Cofre de Almas. Solo el Manto de Incorporeidad permite cruzar el círculo de sal sin ser detectado. Las inscripciones advierten: Para reclamar el alma, debes dejar de ser carne. Sin la capa, el paso está sellado por sus espadas de luz"
+    },
+    {
       "id": "2",
-      "titulo": "pon a prueba tu suerte",
-      "descripcion": "pon aprueba tu suerte y escoge uno entre estos 4 botones y espera a ver si la suerte te sonrie"
+      "titulo": "El juicio del azar",
+      "descripcion": "Cuatro sellos arcanos aguardan ante ti. Solo uno contiene la bendición de la Diosa de la fortuna; los demás, solo silencio. Elige con sabiduría y descubre si el destino está de tu lado."
     },
     {
       "id": "1",
-      "titulo": "inico",
+      "titulo": "Inico",
       "descripcion": "El inico"
     }
   ]

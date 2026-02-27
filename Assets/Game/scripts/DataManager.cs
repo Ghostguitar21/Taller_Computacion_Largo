@@ -17,6 +17,34 @@ public class DataManager : MonoBehaviour
     public TextMeshProUGUI misionActualTexto;
     public TextAsset MisionesData;
 
+   //---------------------------------------
+    [Header("UI Botones Mision Manto")]
+    public GameObject botonUsarManto;    
+    public GameObject botonNoUsarManto;   
+    
+    [Header("Paneles de Resultado Mision Manto")]
+    public GameObject panelMisionMantoPasada;
+    public GameObject panelMisionMantoFallida;
+    // -------------------------------------
+
+
+    [Header("Paneles de Resultado Mision Suerte")]
+
+    public GameObject botonOpcion1;
+    public GameObject botonOpcion2;
+    public GameObject botonOpcion3;
+    public GameObject botonOpcion4;
+
+    public GameObject panelMisionSuertePasada;
+    public GameObject panelMisionSuerteFallida;
+    // -------------------------------------
+
+    [Header("Paneles validar volver")]
+    public GameObject panelValidarRegresar;
+
+
+
+
     List<misiones> listaMisiones = new List<misiones>();
     Stack<misiones> pilaMisiones = new Stack<misiones>();
     List<readJS.coleccionable> colecionables = new List<readJS.coleccionable>();
@@ -24,15 +52,90 @@ public class DataManager : MonoBehaviour
 
     void Start()
     {
+
         cargarJS();
         BuscarC("Moneda");
         botonBC();
         CargarMisiones();
+
+     
+        OcultarBotonesManto();
+        OcultarPanelResultadoManto();
+
+        OcultarBotonesSuerte();
+        OcultarPanelResultadoSuerte();
+
+        OcultarPanelValidarRegresar();
+
     }
 
 
     void Update()
     {
+
+    }
+    public void ValidarRegresar()
+    {
+
+        panelValidarRegresar.SetActive(true);
+
+    }
+    public void OcultarPanelValidarRegresar()
+    {
+
+        panelValidarRegresar.SetActive(false);
+
+    }
+
+    private void OcultarBotonesManto()
+    {
+        if (botonUsarManto != null) botonUsarManto.SetActive(false);
+        if (botonNoUsarManto != null) botonNoUsarManto.SetActive(false);
+    }
+
+    private void OcultarBotonesSuerte()
+    {
+        if (botonOpcion1 != null) botonOpcion1.SetActive(false);
+        if (botonOpcion2 != null) botonOpcion2.SetActive(false);
+        if (botonOpcion3 != null) botonOpcion3.SetActive(false);
+        if (botonOpcion4 != null) botonOpcion4.SetActive(false);
+
+    }
+    public void PasarNivelManto()
+    {
+
+        panelMisionMantoPasada.SetActive(true);
+
+    }
+    public void PasarNivelSuerte()
+    {
+
+        panelMisionSuertePasada.SetActive(true);
+
+    }
+    public void FallarNivelManto()
+    {
+
+        panelMisionMantoFallida.SetActive(true);   
+
+    }
+    public void FallarNivelSuerte()
+    {
+
+        panelMisionSuerteFallida.SetActive(true);
+
+    }
+    public void OcultarPanelResultadoManto()
+    {
+        panelMisionMantoPasada.SetActive(false);
+        panelMisionMantoFallida.SetActive(false);   
+
+    }
+
+    public void OcultarPanelResultadoSuerte()
+    {
+        panelMisionSuertePasada.SetActive(false);
+        panelMisionSuerteFallida.SetActive(false);
 
     }
 
@@ -105,7 +208,7 @@ public class DataManager : MonoBehaviour
         foreach (misiones m in datosM.misiones)
         {
             listaMisiones.Add(m);
-            pilaMisiones.Push(m); // las metemos a la pila
+            pilaMisiones.Push(m); 
         }
 
         MostrarMisionActual();
@@ -120,10 +223,35 @@ public class DataManager : MonoBehaviour
                 "Misión Actual:\n" +
                 actual.Titulo + "\n\n" +
                 actual.Descripcion;
+            
+            if (actual.Titulo == "El velo del silencio")
+            {
+                botonUsarManto.SetActive(true);
+                botonNoUsarManto.SetActive(true);
+            }
+            else
+            {
+                OcultarBotonesManto();//////////
+            }
+            if (actual.Titulo == "El juicio del azar")
+            {
+                botonOpcion1.SetActive(true);
+                botonOpcion2.SetActive(true);
+                botonOpcion3.SetActive(true);
+                botonOpcion4.SetActive(true);
+
+            }
+            else
+            {
+                OcultarBotonesSuerte();//////////
+            }
         }
+
         else
         {
             misionActualTexto.text = "No hay misiones activas.";
+            OcultarBotonesManto();////////
+            OcultarBotonesSuerte() ;
         }
     }
 
@@ -144,6 +272,10 @@ public class DataManager : MonoBehaviour
             misiones m = historialUndo.Pop();
             pilaMisiones.Push(m);
             MostrarMisionActual();
+        }
+        else
+        {
+            ValidarRegresar();
         }
     }
 }
