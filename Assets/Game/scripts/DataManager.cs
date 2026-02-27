@@ -42,8 +42,13 @@ public class DataManager : MonoBehaviour
     [Header("Paneles validar volver")]
     public GameObject panelValidarRegresar;
 
+    [Header("Scroll View")]
+    public Transform contenedorLista;
+    public GameObject itemPrefab;
 
-
+    [Header("Paneles Detalle")]
+    public GameObject panelDetalle;
+    public TextMeshProUGUI textoDetalleColeccionable;
 
     List<misiones> listaMisiones = new List<misiones>();
     Stack<misiones> pilaMisiones = new Stack<misiones>();
@@ -66,6 +71,8 @@ public class DataManager : MonoBehaviour
         OcultarPanelResultadoSuerte();
 
         OcultarPanelValidarRegresar();
+
+        panelDetalle.SetActive(false);
 
     }
 
@@ -153,6 +160,7 @@ public class DataManager : MonoBehaviour
             }
             Debug.Log("# objetos caragos" + datos.coleccionables.Length);
             datosJS.text = "Objeto:" + datos.coleccionables[0].nombre + "\nRareza:" + datos.coleccionables[0].rareza + "\nValor:" + datos.coleccionables[0].valor;
+            CrearListaColeccionables();
 
         }
 
@@ -277,6 +285,47 @@ public class DataManager : MonoBehaviour
         {
             ValidarRegresar();
         }
+    }
+
+    void CrearListaColeccionables()
+    {
+        foreach (Transform hijo in contenedorLista)
+        {
+            Destroy(hijo.gameObject);
+        }
+
+        foreach (var c in datos.coleccionables)
+        {
+            GameObject nuevoItem = Instantiate(itemPrefab, contenedorLista);
+
+            TextMeshProUGUI texto = nuevoItem.GetComponentInChildren<TextMeshProUGUI>();
+            texto.text = c.nombre;
+
+            Button boton = nuevoItem.GetComponent<Button>();
+            boton.onClick.AddListener(() =>
+            {
+                MostrarDetalle(c);
+            });
+        }
+    }
+
+    void MostrarDetalle(readJS.coleccionable c)
+    {
+        textoDetalleColeccionable.text =
+            "Objeto: " + c.nombre +
+            "\nRareza: " + c.rareza +
+            "\nValor: " + c.valor;
+
+        panelDetalle.SetActive(true);
+
+        StopAllCoroutines(); 
+        StartCoroutine(OcultarPanelDespuesDeTiempo(3f));
+    }
+
+    IEnumerator OcultarPanelDespuesDeTiempo(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo);
+        panelDetalle.SetActive(false);
     }
 }
 
