@@ -17,11 +17,11 @@ public class DataManager : MonoBehaviour
     public TextMeshProUGUI misionActualTexto;
     public TextAsset MisionesData;
 
-   //---------------------------------------
+    //---------------------------------------
     [Header("UI Botones Mision Manto")]
-    public GameObject botonUsarManto;    
-    public GameObject botonNoUsarManto;   
-    
+    public GameObject botonUsarManto;
+    public GameObject botonNoUsarManto;
+
     [Header("Paneles de Resultado Mision Manto")]
     public GameObject panelMisionMantoPasada;
     public GameObject panelMisionMantoFallida;
@@ -38,6 +38,14 @@ public class DataManager : MonoBehaviour
     public GameObject panelMisionSuertePasada;
     public GameObject panelMisionSuerteFallida;
     // -------------------------------------
+
+    [Header("Acertijo")]
+
+    public GameObject Verdadero;
+    public GameObject Falso;
+    public GameObject panelAcertijoPasado;
+    public GameObject panelAcertijoFallar;
+
 
     [Header("Paneles validar volver")]
     public GameObject panelValidarRegresar;
@@ -57,23 +65,20 @@ public class DataManager : MonoBehaviour
 
     void Start()
     {
+        OcultarBotonesManto();
+        OcultarPanelResultadoManto();
+        OcultarPanelesAcertijo();
+        OcultarBotonesSuerte();
+        OcultarPanelResultadoSuerte();
+        OcultarPanelValidarRegresar();
+        OcultarAcertijo();
+        panelDetalle.SetActive(false);
 
+        
         cargarJS();
         BuscarC("Moneda");
         botonBC();
-        CargarMisiones();
-
-     
-        OcultarBotonesManto();
-        OcultarPanelResultadoManto();
-
-        OcultarBotonesSuerte();
-        OcultarPanelResultadoSuerte();
-
-        OcultarPanelValidarRegresar();
-
-        panelDetalle.SetActive(false);
-
+        CargarMisiones(); 
     }
 
 
@@ -108,6 +113,14 @@ public class DataManager : MonoBehaviour
         if (botonOpcion4 != null) botonOpcion4.SetActive(false);
 
     }
+
+
+    private void OcultarAcertijo()
+    {
+        if (Verdadero != null) Verdadero.SetActive(false);
+        if (Falso != null) Falso.SetActive(false);
+    }
+
     public void PasarNivelManto()
     {
 
@@ -123,7 +136,7 @@ public class DataManager : MonoBehaviour
     public void FallarNivelManto()
     {
 
-        panelMisionMantoFallida.SetActive(true);   
+        panelMisionMantoFallida.SetActive(true);
 
     }
     public void FallarNivelSuerte()
@@ -131,6 +144,23 @@ public class DataManager : MonoBehaviour
 
         panelMisionSuerteFallida.SetActive(true);
 
+    }
+
+    public void OcultarPanelesAcertijo()
+    {
+        panelAcertijoPasado.SetActive(false);
+        panelAcertijoFallar.SetActive(false);
+    }
+
+    public void PasarAcertijo()
+    {
+        panelAcertijoPasado.SetActive(true);
+    }
+
+
+    public void FallarAcertijo()
+    {
+        panelAcertijoFallar.SetActive(true);
     }
     public void OcultarPanelResultadoManto()
     {
@@ -251,7 +281,18 @@ public class DataManager : MonoBehaviour
             }
             else
             {
-                OcultarBotonesSuerte();//////////
+                OcultarBotonesSuerte();
+                OcultarPanelResultadoSuerte();
+            }
+
+            if (actual.Titulo == "Bifurcación en el camino")
+            {
+                Verdadero.SetActive(true);
+                Falso.SetActive(true);
+            }
+            else
+            {
+                OcultarAcertijo();//////////
             }
         }
 
@@ -260,6 +301,7 @@ public class DataManager : MonoBehaviour
             misionActualTexto.text = "No hay misiones activas.";
             OcultarBotonesManto();////////
             OcultarBotonesSuerte() ;
+            OcultarAcertijo();
         }
     }
 

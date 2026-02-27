@@ -18,9 +18,9 @@
   ],
   "misiones": [
     {
-      "id": "3",
-      "titulo": "El velo del silencio",
-      "descripcion": "En el santuario, los Centinelas Eternos custodian el Cofre de Almas. Solo el Manto de Incorporeidad permite cruzar el círculo de sal sin ser detectado. Las inscripciones advierten: Para reclamar el alma, debes dejar de ser carne. Sin la capa, el paso está sellado por sus espadas de luz"
+      "id": "1",
+      "titulo": "Bifurcación en el camino",
+      "descripcion": "Enfrente de ti hay una puerta; al tocarla, eres transportado al momento de tu muerte, donde hay 2 posibles futuros. En el primero, donde pusiste el éxito y el dinero frente a todo, eres la persona más rica del mundo; en el segundo, hiciste tiempo para tus seres queridos, tienes una gran familia y muchos amigos, pero poco dinero. Elige. "
     },
     {
       "id": "2",
@@ -28,9 +28,9 @@
       "descripcion": "Cuatro sellos arcanos aguardan ante ti. Solo uno contiene la bendición de la Diosa de la fortuna; los demás, solo silencio. Elige con sabiduría y descubre si el destino está de tu lado."
     },
     {
-      "id": "1",
-      "titulo": "Inico",
-      "descripcion": "El inico"
+      "id": "3",
+      "titulo": "El velo del silencio",
+      "descripcion": "En el santuario, los Centinelas Eternos custodian el Cofre de Almas. Solo el Manto de Incorporeidad permite cruzar el círculo de sal sin ser detectado. Las inscripciones advierten: Para reclamar el alma, debes dejar de ser carne. Sin la capa, el paso está sellado por sus espadas de luz"
     }
   ]
 }
