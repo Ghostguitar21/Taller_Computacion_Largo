@@ -14,6 +14,26 @@
       "nombre": "Manto incorporeo",
       "rareza": "epica",
       "valor": "2000"
+    },
+    {
+      "nombre": "Pluma de Fenix Cenicienta",
+      "rareza": "comun",
+      "valor": "150"
+    },
+    {
+      "nombre": "Reloj de Arena Roto",
+      "rareza": "Poco comun",
+      "valor": "1200"
+    },
+    {
+      "nombre": "Lagrima de Centinela",
+      "rareza": "rara",
+      "valor": "5000"
+    },
+    {
+      "nombre": "Llave del Destino Alterado",
+      "rareza": "legendaria",
+      "valor": "15000"
     }
   ],
   "misiones": [
@@ -34,4 +54,3 @@
     }
   ]
 }
-
